@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record App</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Record App</h1>
+    </header>
+    <main>
+        <div class="record-contents">
+            <div class="record-form">
+                <form id="recordForm">
+                    <div class="form-group">
+                        <label for="recordTitle">タイトル:</label>
+                        <input class="record-title" type="text" id="recordTitle" name="recordTitle" required>
+                        <input class="record-minute" type="time" id="recordMinute" name="recordMinute" placeholder="分数を入力">
+                        <button class="record-submit" id="recordSubmit" type="submit">追加</button>
+                        <button class="record-clear" id="recordClear" type="button">クリア</button>
+                    </div>
+                </form>
+            </div>
+            <div class="timer-container">
+                <h2>タイマー</h2>
+                <div class="timer">
+                    <div class="timer-display">
+                        <span id="timerDisplay">00:00:00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="startTimer">スタート</button>
+                        <button id="stopTimer">ストップ</button>
+                        <button id="resetTimer">リセット</button>
+                        <button id="recordTimer">記録</button>
+                    </div>
+                </div>
+            </div>
+            <div class="record-list-container">
+                <h2>記録一覧</h2>
+                <ul class="record-list" id="recordList">
+                    <!-- 記録がここに表示されます -->
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <h1>Record App</h1>
+        <p>create by me</p>
+        <p>&copy; 2024 Record App</p>
+    </footer>
+</body>
+</html>

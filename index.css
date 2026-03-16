@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 60px;
+}
+
+.record-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 80px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 24px;
+}
+
+.record-title {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.record-minute {
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.record-submit,
+.record-clear {
+  all: unset;
+  background-color: #007bff;
+  color: white;
+  height: 43px;
+  padding: 0 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.record-submit:hover,
+.record-clear:hover {
+  background-color: #0056b3;
+}
+
+/*timer*/
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.timer-container h2 {
+  margin: 0;
+}
+
+.timer {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.timer-controls button {
+  all: unset;
+  background-color: #28a745;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.timer-controls button:hover {
+  background-color: #218838;
+}
+
+.record-list-container {
+  background-color: rgb(245, 245, 245);
+  margin-right: 80px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.record-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.record-item {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 0 10px 0;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+}
+
+.record-item button {
+  all: unset;
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.record-item button:hover {
+  background-color: #c82333;
+}
+
+.record-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
+  margin-top: 60px;
+}
+
+footer h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
