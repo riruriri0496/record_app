@@ -5,6 +5,11 @@ const recordList = document.querySelector('#recordList');
 const recordClear = document.querySelector('#recordClear');
 
 let records = [];
+let isTimerRunning = false;
+let elapsedBeforePause = 0;
+let timerInterval = null;
+let startTime = 0;
+
 
 recordSubmit.addEventListener('click', (e) => {
     e.preventDefault();
@@ -112,36 +117,50 @@ const stopTimer = document.querySelector('#stopTimer');
 const resetTimer = document.querySelector('#resetTimer');
 const recordTimer = document.querySelector('#recordTimer');
 
-let timerInterval;
-let startTime = 0;
-
 function updateTimer() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-    }
+    if (isTimerRunning) return;
     startTime = Date.now();
     timerInterval = setInterval(tick, 10);
+    isTimerRunning = true;
 }
 
 function tick() {
-    const elapsed = Date.now() - startTime;
+    const elapsed = (Date.now() - startTime) + elapsedBeforePause;
     const minutes = Math.floor(elapsed / 60000);
     const seconds = Math.floor((elapsed % 60000) / 1000);
     const centiSeconds = Math.floor((elapsed % 1000) / 10);
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${centiSeconds.toString().padStart(2, '0')}`;
 }
 
+function stoptimerFunction() {
+    if (!isTimerRunning) return;
+    clearInterval(timerInterval);
+    elapsedBeforePause += Date.now() - startTime;
+    timerInterval = null;
+    isTimerRunning = false;
+}
+
 startTimer.addEventListener('click', updateTimer);
 stopTimer.addEventListener('click', () => {
     clearInterval(timerInterval);
+    elapsedBeforePause += Date.now() - startTime;
+    isTimerRunning = false;
 });
 
 resetTimer.addEventListener('click', () => {
-    if (timerInterval) {
+    if (isTimerRunning) {
         clearInterval(timerInterval);
+        isTimerRunning = false;
         if(confirm('タイマーをリセットしますか？')) {
             clearInterval(timerInterval);
             startTime = 0;
+            elapsedBeforePause = 0;
+            timerDisplay.textContent = "00:00:00";
+        }
+    } else {
+        if(confirm('タイマーをリセットしますか？')) {
+            startTime = 0;
+            elapsedBeforePause = 0;
             timerDisplay.textContent = "00:00:00";
         }
     }
@@ -158,3 +177,34 @@ recordTimer.addEventListener('click', () => {
         saveRecords();
     }
 });
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "s" ) {
+        if (isTimerRunning) {
+            clearInterval(timerInterval);
+            elapsedBeforePause += Date.now() - startTime;
+            isTimerRunning = false;
+        } else {
+            updateTimer();
+        }
+    }
+})
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "r" ) {
+        if (isTimerRunning) {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            if(confirm('タイマーをリセットしますか？')) {
+                clearInterval(timerInterval);
+                startTime = 0;
+                timerDisplay.textContent = "00:00:00";
+            }
+        } else {
+            if(confirm('タイマーをリセットしますか？')) {
+                startTime = 0;
+                timerDisplay.textContent = "00:00:00";
+            }
+        }
+    }
+})
